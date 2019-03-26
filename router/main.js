@@ -16,5 +16,17 @@ module.exports = function(app)
 		res.json({ date: Date.now(), counter: counter});
 	});
 
+	/**
+ 	 * When the user makes a request to the POST endpoint, 
+ 	 * it should increment the counter & return the counter after increment like:
+     * {"date":<timestamp>,"counter":<counter>}.
+ 	 */
+	app.post('/addCounter', function(req, res, next) {		
+		// access the global counter and increment by 1
+		req.app.locals.counter++;
+		// return the updated counter as a JSON object along with the current date
+		var counter = req.app.locals.counter;
+		res.json({ date: Date.now(), counter: counter});
+	});
 	
 }
